@@ -25,7 +25,7 @@ SECRET_KEY = 'byd8=o^i66j+b@x3=lfu6#yijkdsz#l)kl*%4sp$bu)f2wdiav'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'instapic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+UPLOADCARE = {
+    'pub_key': '7bad302b223eecb3a6b8',
+    'secret': 'b099e6ad4c84d98841d9',
+}
 
 WSGI_APPLICATION = 'instapic.wsgi.application'
 
@@ -126,8 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-
-PASSWORD_HASHERS = (
+ASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -137,4 +142,6 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
-AUTHENTICATION_BACKENDS = ( 'instapic.authb.AuthB', )
+AUTHENTICATION_BACKENDS = ('instapic.authb.AuthB',)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
